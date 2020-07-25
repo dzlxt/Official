@@ -1,6 +1,6 @@
 package com.g0818.pojo.nbiot;
 
-//车位状态数据库的bean
+//车位状态数据库的pojo
 public class ParkingStatusbean {
 
 	private		int		id;

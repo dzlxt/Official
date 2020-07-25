@@ -45,6 +45,16 @@ public class ParkingIotbean {
 	public void setLockNO(String lockNO) {
 		this.lockNO = lockNO;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "ParkingIotbean{" +
+				"id=" + id +
+				", city='" + city + '\'' +
+				", partition='" + partition + '\'' +
+				", Street='" + Street + '\'' +
+				", parkingNO=" + parkingNO +
+				", lockNO='" + lockNO + '\'' +
+				'}';
+	}
 }
