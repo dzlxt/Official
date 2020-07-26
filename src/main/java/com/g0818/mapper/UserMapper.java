@@ -13,11 +13,11 @@ public interface UserMapper extends BaseMapper<Users> {
 
     /**
      * 查询用户信息
-     * @param userName
+     * @param username
      * @return
      */
-    @Select(" select * from users where username = #{userName}")
-    Users findByUsername(@Param("userName") String userName);
+    @Select(" select * from users where username = #{username}")
+    Users findByUsername(@Param("username") String username);
 
 
     /**

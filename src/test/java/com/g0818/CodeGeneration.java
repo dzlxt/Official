@@ -22,7 +22,7 @@ public class CodeGeneration {
 
 
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath+"/src/main/java/com/g0818");
+        gc.setOutputDir(projectPath+"/src/main/java");
         gc.setAuthor("雷小涛");
         gc.setFileOverride(false);
         gc.setOpen(false);
@@ -32,12 +32,13 @@ public class CodeGeneration {
         mpg.setGlobalConfig(gc);
 
         dsc.setUrl("jdbc:mysql://127.0.0.1:3306/jpa?charset=utf8mb4&useSSL=false&serverTimezone=UTC");
-        dsc.setDriverName("com.mysql.cj.jdbc.Drive");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("jpa");
         dsc.setPassword("123456");
         dsc.setDbType(DbType.MYSQL);
         mpg.setDataSource(dsc);
 
+        pc.setParent("com.g0818");
         pc.setController("controller");
         pc.setMapper("mapper");
         pc.setService("service");
@@ -46,7 +47,7 @@ public class CodeGeneration {
 
         // 策略配置
 
-        sc.setInclude("");
+        //sc.setInclude("pushmessage","parking_order","china","charging_standard","assembly_production","address");
         sc.setNaming(NamingStrategy.underline_to_camel);
         sc.setColumnNaming(NamingStrategy.underline_to_camel);
         sc.setEntityLombokModel(true);

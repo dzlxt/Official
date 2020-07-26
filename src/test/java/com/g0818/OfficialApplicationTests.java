@@ -28,7 +28,6 @@ class OfficialApplicationTests {
         Users user = new Users();
         user.setUsername("admin");
         user.setPassword(pwd);
-        user.setId_number("513030197108260414");
         user.setMoblephone("18081516663");
         userMapper.insert(user);
         System.out.println(pwd);

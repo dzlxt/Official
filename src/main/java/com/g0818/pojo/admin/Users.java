@@ -16,12 +16,6 @@ public class Users implements UserDetails, Serializable {
     private Long id;
     private String username;
     private String password;
-    private String moblephone;
-    private String id_number;
-
-    @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
-    private List<Role> authorities;
 
     public Long getId() {
         return id;
@@ -57,12 +51,12 @@ public class Users implements UserDetails, Serializable {
         this.moblephone = moblephone;
     }
 
-    public String getId_number() {
-        return id_number;
+    public String getIdcar() {
+        return idcar;
     }
 
-    public void setId_number(String id_number) {
-        this.id_number = id_number;
+    public void setIdcar(String idcar) {
+        this.idcar = idcar;
     }
 
     public Date getCreateTime() {
@@ -72,6 +66,15 @@ public class Users implements UserDetails, Serializable {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    private String moblephone;
+    private String idcar;
+
+    @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
+    private List<Role> authorities;
+
+
 
 
     @Override

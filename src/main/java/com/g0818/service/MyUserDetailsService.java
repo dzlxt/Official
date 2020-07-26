@@ -17,9 +17,9 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserMapper userMapper;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        System.out.println(" 用户名是"+s);
-        Users u = userMapper.findByUsername(s);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Users u = userMapper.findByUsername(username);
         if(null != u) {
             String name = u.getUsername();
             String pwd = u.getPassword();
