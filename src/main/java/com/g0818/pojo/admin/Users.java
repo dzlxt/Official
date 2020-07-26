@@ -17,7 +17,7 @@ public class Users implements UserDetails, Serializable {
     private String username;
     private String password;
     private String moblephone;
-    private String ID_number;
+    private String id_number;
 
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
@@ -49,29 +49,30 @@ public class Users implements UserDetails, Serializable {
         this.password = password;
     }
 
+    public String getMoblephone() {
+        return moblephone;
+    }
+
     public void setMoblephone(String moblephone) {
         this.moblephone = moblephone;
     }
 
-    public void setID_number(String ID_number) {
-        this.ID_number = ID_number;
+    public String getId_number() {
+        return id_number;
+    }
+
+    public void setId_number(String id_number) {
+        this.id_number = id_number;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
     }
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getMoblephone() {
-        return moblephone;
-    }
-
-    public String getID_number() {
-        return ID_number;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
 
     @Override
     public List<Role> getAuthorities() {
@@ -99,7 +100,7 @@ public class Users implements UserDetails, Serializable {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return false;
     }
 
 }

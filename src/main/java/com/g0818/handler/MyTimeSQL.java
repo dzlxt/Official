@@ -18,6 +18,6 @@ public class MyTimeSQL implements MetaObjectHandler {
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        
+
     }
 }
