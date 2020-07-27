@@ -1,13 +1,15 @@
 package com.g0818;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+
+import com.g0818.Util.AuthUtil;
 import com.g0818.mapper.UserMapper;
 import com.g0818.pojo.admin.Users;
+import com.iotplatform.client.NorthApiClient;
+import com.iotplatform.client.NorthApiException;
+import com.iotplatform.client.dto.AuthOutDTO;
+import com.iotplatform.client.invokeapi.Authentication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafTemplateAvailabilityProvider;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
@@ -31,6 +33,27 @@ class OfficialApplicationTests {
         user.setMoblephone("18081516663");
         userMapper.insert(user);
         System.out.println(pwd);
+    }
+
+    @Test
+    void testnbiot(){
+
+        String acc=null;
+        String ssl=null;
+        NorthApiClient northApiClient= AuthUtil.initApiClient();
+        Authentication authentication = new Authentication(northApiClient);
+
+        try {
+            AuthOutDTO authOutDTO=authentication.getAuthToken();
+            acc=authOutDTO.toString();
+            if(acc!=null) {
+                authentication.startRefreshTokenTimer();
+
+            }
+        } catch (NorthApiException e) {
+            e.printStackTrace();
+        }
+        System.out.println(northApiClient.getClientInfo()+"*****"+acc+"******"+northApiClient.getVersion());
     }
 
 

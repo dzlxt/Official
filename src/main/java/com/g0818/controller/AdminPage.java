@@ -5,6 +5,7 @@ import com.g0818.pojo.admin.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,15 +42,18 @@ public class AdminPage {
     }
 
     @RequestMapping("/sign")
-    public String sign(){ return "sign-up";}
+    public String sign(Model model){
+        model.addAttribute("msg","注册一个新用户");
+        return "sign-up";
+    }
 
     @RequestMapping("/reg")
-    @ResponseBody
     public String reg(@RequestParam(value = "username")String name,
                       @RequestParam(value = "mobliephone")String mobliephone,
                       @RequestParam(value = "idcar")String idcar,
                       @RequestParam(value = "password")String password,
-                      @RequestParam(value = "rpassword")String rpassword
+                      @RequestParam(value = "rpassword")String rpassword,
+                      Model model
     )
     {
         String a=null;
@@ -60,10 +64,11 @@ public class AdminPage {
             u.setMoblephone(mobliephone);
             u.setIdcar(idcar);
             u.setPassword(pwd);
-            userMapper.insert(u);
-            a= "注册成功";
+            //userMapper.insert(u);
+            a= "login";
         }else {
-            a= "两次密码不相符";
+            model.addAttribute("msg","两次密码不一致");
+            a= "sign-up";
         }
         return a;
     }

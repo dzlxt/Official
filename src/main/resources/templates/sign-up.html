@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="assets/i/favicon.png">
     <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <link rel="stylesheet" href="assets/css/amazeui.min.css" />
+    <link rel="stylesheet" th:href="@{assets/css/amazeui.min.css}" />
     <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="assets/css/app.css">
     <script src="assets/js/jquery.min.js"></script>
@@ -40,9 +40,10 @@
         <div class="tpl-login">
             <div class="tpl-login-content">
                 <div class="tpl-login-title">注册用户</div>
-                <span class="tpl-login-content-info">
-                  创建一个新的用户
+                <span style="color: red" class="tpl-login-content-info" th:text="${msg}">
+
               </span>
+
 
 
                 <form class="am-form tpl-form-line-form" th:action="@{/reg}" method="post">
