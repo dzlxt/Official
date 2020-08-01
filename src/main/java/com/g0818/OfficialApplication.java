@@ -1,5 +1,6 @@
 package com.g0818;
 
+import com.g0818.Util.AuthUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +13,6 @@ public class OfficialApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(OfficialApplication.class, args);
+        AuthUtil.refreshToken();
     }
-
 }
