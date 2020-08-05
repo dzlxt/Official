@@ -3,6 +3,8 @@ package com.g0818.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,6 +17,7 @@ import lombok.EqualsAndHashCode;
  * @since 2020-07-26
  */
 @Data
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class ChargingStandard implements Serializable {
 
@@ -45,6 +48,11 @@ public class ChargingStandard implements Serializable {
      * 续集资费标准
      */
     private Integer extendTaniff;
+
+    /**
+     * 首停计费单位
+     */
+    private Integer dayDuration;
 
 
 }

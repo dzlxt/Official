@@ -108,8 +108,11 @@
             <scope>test</scope>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-pay</artifactId>
+            <version>3.8.6.B</version>
+        </dependency>
 
         <dependency>
             <groupId>com.iotplatform</groupId>

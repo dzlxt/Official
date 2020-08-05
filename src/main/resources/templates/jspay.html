@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <title>停车费支付</title>
+    <script type="text/javascript" th:inline="javascript">
+
+        function jsApiCall()
+        {
+            var url="/addorder?startime="+[[${startime}]]+"&out_trade_no="+[[${out_trade_no}]]+"&total_fee="+[[${total_fee}]]+"&endtime="+[[${endtime}]]+"&device_info="+[[${device_info}]];
+            WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',{
+                    "appId":/*[[${appId}]]*/,					//公众号名称，由商户传入
+                    "timeStamp":[[${timeStamp}]], 		        //时间戳，自1970年以来的秒数
+                    "nonceStr":[[${nonceStr}]],                 //随机串
+                    "package":[[${package}]],		            //预支付交易会话标识
+                    "signType":[[${signType}]],		            //微信签名方式：
+                    "paySign":[[${paySign}]], },				//微信签名
+                function(res){
+                    if(res.err_msg == "get_brand_wcpay_request:ok" ){
+                        //delOrder(url);
+                    }else{
+                        alert("本次付款已取消，如非本人取消，请新扫码"+url);
+                    }
+                    //WeixinJSBridge.log(res.err_msg);
+                })
+        }
+
+        function callpay(a){
+            if (typeof('WeixinJSBridge') == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                jsApiCall();
+            }
+        }
+
+        function delOrder(url){
+            var xhr=new XMLHttpRequest();
+            xhr.open('GET',url,true);
+            xhr.send();
+            xhr.onreadystatechange = state_change;
+        }
+
+        function state_change(){}
+    </script>
+    <style>
+        .tips{
+            height: 60px;
+        }
+        p{
+            color: green;
+            font-size: 20px;
+            letter-spacing:5px;
+            height: 40px;
+            text-align: center;
+            font-weight: 700;
+        }
+        .number{
+            color: midnightblue;
+            font-size: 20px;
+            letter-spacing: 5px;
+            height: 40px;
+            text-align: center;
+            font-weight: 700px;
+        }
+        .btn{
+
+            background-color: rgb(153, 50, 9);
+            height: 70px;
+            width: 260px;
+            font-size: 30px;
+            border-radius: 15px;
+            letter-spacing: 8px;
+            color: #fff;
+        }
+        .but{
+            margin: 30px auto;
+            width: 260px;
+        }
+    </style>
+</head>
+<body>
+<div class="tips">
+    <p >本次停车时长：<span class="number" th:text="${total_fee}"></span>小时</p>
+</div>
+<div class="tips">
+    <p >本次停车费：<span class="number" th:text="${total_fee}"></span>.00元钱</p>
+</div>
+
+<div class="but">
+    <button class="btn" type="button" onclick="callpay()" >立即支付</button>
+</div>
+</body>
+</html>
